@@ -64,7 +64,7 @@ protected:
     
     float _windowW, _windowH;
     bool bNodeSet;
-    
+    ofRectangle viewPort;
     ofMatrix4x4 objectMatrix;
     IGizmo *gizmo       = NULL;
     IGizmo *gizmoMove   = NULL;
