@@ -20,13 +20,13 @@ public:
         OFX_GIZMO_ROTATE
     };
     
-    void setMatrix( ofMatrix4x4 aMat );
-    bool setMatrix( string aString );
-    void setNode( ofNode aNode );
+    void setMatrix( const ofMatrix4x4& aMat );
+	bool setMatrix(const std::string& aString);
+    void setNode( const ofNode& aNode );
     
-    void draw( ofCamera& aCam );
+    void draw( const ofCamera& aCam );
     
-    void setDisplayScale( float aScale );
+    void setDisplayScale( const float aScale );
     void setType( ofxGizmoType aType );
     ofMatrix4x4& getMatrix();
     
@@ -41,8 +41,8 @@ public:
     void setViewDimensions( float aw, float ah );
     
     string getMatrixAsString();
-    bool save( string aFileName );
-    bool load( string aFileName );
+    bool save( const std::string& aFileName );
+    bool load( const std::string& aFileName );
     
     void enableMouseInput();
     void disableMouseInput();

@@ -50,7 +50,7 @@ ofxGizmo::~ofxGizmo() {
 }
 
 //--------------------------------------------------------------
-void ofxGizmo::setMatrix( ofMatrix4x4 aMat ) {
+void ofxGizmo::setMatrix( const ofMatrix4x4& aMat ) {
     objectMatrix = aMat;
     
     gizmoRotate->SetEditMatrix( objectMatrix.getPtr() );
@@ -65,7 +65,7 @@ void ofxGizmo::setMatrix( ofMatrix4x4 aMat ) {
 }
 
 //--------------------------------------------------------------
-bool ofxGizmo::setMatrix( string aString ) {
+bool ofxGizmo::setMatrix( const string& aString ) {
     vector< string > tstrings = ofSplitString( aString, "," );
     if( tstrings.size() == 16 ) {
         float vals[16];
@@ -80,12 +80,12 @@ bool ofxGizmo::setMatrix( string aString ) {
 }
 
 //--------------------------------------------------------------
-void ofxGizmo::setNode( ofNode aNode ) {
+void ofxGizmo::setNode( const ofNode& aNode ) {
     setMatrix( aNode.getGlobalTransformMatrix() );
 }
 
 //--------------------------------------------------------------
-void ofxGizmo::draw( ofCamera &aCam ) {
+void ofxGizmo::draw( const ofCamera &aCam ) {
     
     if ( gizmo && isVisible() ) {
         ofPushStyle(); {
@@ -101,7 +101,7 @@ void ofxGizmo::draw( ofCamera &aCam ) {
 }
 
 //--------------------------------------------------------------
-void ofxGizmo::setDisplayScale( float aScale ) {
+void ofxGizmo::setDisplayScale(const float aScale ) {
     gizmoRotate->SetDisplayScale( aScale );
     gizmoMove->SetDisplayScale( aScale );
     gizmoScale->SetDisplayScale( aScale );
@@ -182,14 +182,14 @@ string ofxGizmo::getMatrixAsString() {
 }
 
 //--------------------------------------------------------------
-bool ofxGizmo::save( string aFileName ) {
+bool ofxGizmo::save( const string& aFileName ) {
     ofBuffer tbuff;
     tbuff.append( getMatrixAsString() );
     return ofBufferToFile( aFileName, tbuff );
 }
 
 //--------------------------------------------------------------
-bool ofxGizmo::load( string aFileName ) {
+bool ofxGizmo::load(const string& aFileName ) {
     ofBuffer tbuff = ofBufferFromFile( aFileName );
     string tstr = tbuff.getText();
     vector< string > tstrings = ofSplitString( tstr, "," );
